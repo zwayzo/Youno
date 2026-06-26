@@ -1,9 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Konsole Analyzer</title>
+    <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
-    <h1>Ça marche !</h1>
+    <div class="container">
+        <h1>🔍 Konsole Analyzer</h1>
+        <p class="subtitle">Analyse instantanée d'un site web</p>
+
+        <div class="search-box">
+            <input type="text" id="url-input" placeholder="stripe.com" />
+            <button id="analyze-btn" onclick="analyze()">Analyser</button>
+        </div>
+
+        <div id="loading" class="hidden">Analyse en cours...</div>
+        <div id="error" class="hidden"></div>
+
+        <div id="results" class="hidden">
+            <div class="card">
+                <h2 id="company-name"></h2>
+                <p id="company-description"></p>
+                <div class="tags">
+                    <span class="tag" id="sector"></span>
+                    <span class="tag" id="business-model"></span>
+                    <span class="tag" id="estimated-size"></span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Tech Stack</h3>
+                <div id="tech-stack" class="tags"></div>
+            </div>
+
+            <div class="card">
+                <h3>Signaux GTM</h3>
+                <ul id="gtm-signals"></ul>
+            </div>
+
+            <div class="card scoring">
+                <h3>Scoring Konsole Fit</h3>
+                <div id="score-label"></div>
+                <div id="score-value"></div>
+                <ul id="score-reasons"></ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="static/script.js"></script>
 </body>
 </html>

@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 import os
 from services.scraper import scrape_website
 from services.analyzer import analyze_company
+from services.scorer import score_company
 load_dotenv()
 
 app = Flask(__name__, static_folder='static')
@@ -24,8 +25,13 @@ def analyze():
     scraped_data = scrape_website(url)
     # print(scraped_data)  # Affiche les données extraites dans la console pour le débogage
     analyzed_data = analyze_company(scraped_data)
-    print(analyzed_data)  # Affiche les données analysées dans la console pour le
-    return jsonify(analyzed_data)
+    print(analyzed_data)  # Affiche les données analysées dans la console pour le débogage
+    scored_data = score_company({**analyzed_data, **scraped_data})
+    print(scored_data)  # Affiche les données analysées dans la console pour le
+    return jsonify({
+        "company": analyzed_data,
+        "score": scored_data
+    })
 
 if __name__ == '__main__':
     app.run(debug=True)
