@@ -9,7 +9,10 @@ def scrape_website(url):
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
     }
 
-    response = requests.get(url, headers=headers, timeout=10)
+    try:
+        response = requests.get(url, headers=headers, timeout=10)
+    except requests.exceptions.RequestException as e:
+        raise Exception(f"Impossible d'accéder au site : {str(e)}")
     soup = BeautifulSoup(response.text, 'html.parser')
 
     title = soup.title.string if soup.title else ''

@@ -3,7 +3,7 @@
 Une application web qui analyse un site web et retourne des informations exploitables sur l'entreprise qui le détient.
 
 ## Demo
-https://youno.onrender.com
+[https://youno.onrender.com](https://youno.onrender.com)
 
 ## Stack technique
 - **Backend** : Python / Flask
@@ -14,25 +14,33 @@ https://youno.onrender.com
 
 ## Comment lancer en local
 
-1. Clone le repo
+**1. Clone le repo**
+```bash
 git clone https://github.com/zwayzo/Youno.git
 cd konsole-analyzer
+```
 
-2. Crée un environnement virtuel
-python3 -m venv venv
-source venv/bin/activate
+**2. Crée ta clé Groq gratuitement**
+- Va sur [console.groq.com/keys](https://console.groq.com/keys)
+- Crée un compte (gratuit, pas de carte bancaire)
+- Génère une clé 
+- Lien d'un tutoriel : https://www.youtube.com/watch?v=9VDbhptCzlU
 
-3. Installe les dépendances
-pip install -r requirements.txt
-
-4. Crée un fichier .env à la racine
+**3. Crée un fichier `.env` à la racine**
+```
 GROQ_API_KEY=ta_clé_groq
+```
 
-5. Lance l'app
-gunicorn app:app
+**4. Lance l'app**
+```bash
+# Première fois
+make start
 
-6. Ouvre http://localhost:8000
+# Les fois suivantes
+make run
+```
 
+**5. Ouvre** `http://localhost:8000`
 
 ## Architecture
 
@@ -42,7 +50,7 @@ L'app suit une logique en 3 étapes :
 - **Scorer** : applique une logique de scoring pour évaluer le fit B2B SaaS
 
 ## Limites actuelles
-- Certains sites bloquent le scraping (Cloudflare, etc.)
+- Certains sites bloquent le scraping (facebook, etc.)
 - Le scoring est basé sur des règles fixes, pas du ML
 - Pas de cache — chaque analyse refait un appel LLM
 
