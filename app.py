@@ -24,9 +24,7 @@ def analyze():
     try:
         scraped_data = scrape_website(url)
         analyzed_data = analyze_company(scraped_data)
-        print(analyzed_data)  # Affiche les données analysées dans la console pour le débogage
         scored_data = score_company({**analyzed_data, **scraped_data})
-        print(scored_data)  # Affiche les données analysées dans la console pour le
         return jsonify({
             "company": analyzed_data,
             "score": scored_data

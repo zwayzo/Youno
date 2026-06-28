@@ -41,4 +41,10 @@ def analyze_company(scraped_data):
     )
 
     response_text = response.choices[0].message.content
-    return json.loads(response_text)
+    response_text = response_text.strip()
+    if response_text.startswith('```'):
+        response_text = response_text.split('```')[1]
+        if response_text.startswith('json'):
+            response_text = response_text[4:]
+
+    return json.loads(response_text.strip())
